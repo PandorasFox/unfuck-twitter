@@ -1,0 +1,22 @@
+{
+	"manifest_version": 2,
+	"name": "strip twitter share trackers",
+	"version": "1.0.2",
+
+	"description": "removes share trackers from url parameters so you get a consistent view when clicking urls",
+
+	"permissions": [
+		"webRequest",
+		"webRequestBlocking",
+		"https://twitter.com/"
+	],
+
+	"background": {
+		"scripts": ["unfuck.js"]
+	},
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "{9215ad99-2c3e-44e3-ae69-4b58abcdec3d}"
+		}
+	}
+}
