@@ -1,4 +1,4 @@
-const unfuck_expression = new RegExp(/&?s=\d+/, 'g');
+const unfuck_expression = new RegExp(/&?[st]=\w+/, 'g');
 
 function unfuck(request) {
 	var unfuckedURL = new URL(request.url);
