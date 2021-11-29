@@ -1,11 +1,12 @@
-const unfuck_expression = new RegExp(/&?[st]=[a-zA-Z_0-9\-]+/, 'g');
+const tracking_params = ["s", "t"];
 
 function unfuck(request) {
 	var unfuckedURL = new URL(request.url);
-	if (unfuckedURL.href.match(unfuck_expression) != null) {
-		unfuckedURL.search = unfuckedURL.search.replaceAll(unfuck_expression, "");
+	if (tracking_params.some(unfuckedURL.searchParams.has, unfuckedURL.searchParams)) {
+		tracking_params.map(unfuckedURL.searchParams.delete, unfuckedURL.searchParams);
+		console.log("Removed twitter tracking");
 		return {
-			redirectUrl: unfuckedURL.href
+			redirectUrl: unfuckedURL.toString()
 		}
 	}
 };
@@ -15,7 +16,6 @@ browser.webRequest.onBeforeRequest.addListener(
 	{
 		urls: ["*://*.twitter.com/*/status/*"],
 		types: ["main_frame"],
-		
 	},
 	["blocking"]
 );
